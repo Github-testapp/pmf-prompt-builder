@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // テンプレート定義
 const templates = [
-    // Webアプリケーション開発テンプレート
+    // Web Application Development Template
     {
         id: 'web-app',
         name: 'Webアプリケーション開発',
@@ -24,6 +24,26 @@ const templates = [
                 '主要コンポーネントのサンプルコードを作成する',
                 'データベース設計を行う'
             ],
+            techSpecs: {
+                frontend: 'React 18、TailwindCSS、React Hook Form',
+                backend: 'Node.js、Express、WebSocket',
+                database: 'PostgreSQL、Redis（キャッシュ）',
+                infrastructure: 'AWS EC2、S3、Docker'
+            },
+            uiSpecs: {
+                interaction: 'カレンダードラッグ&ドロップ操作、リアルタイム更新',
+                responsive: 'モバイルファースト設計、ブレイクポイント: sm(640px)、md(768px)、lg(1024px)',
+                accessibility: 'WCAG 2.1 AAレベル準拠、スクリーンリーダー対応'
+            },
+            designSpecs: {
+                font: 'Noto Sans JP（日本語）、Roboto（英数字）',
+                colors: 'プライマリ: #4F46E5、セカンダリ: #10B981、グレースケール: #F9FAFB〜#1F2937',
+                style: 'ミニマルでクリーンなデザイン、ライトモード/ダークモード対応'
+            },
+            layoutSpecs: {
+                pageStructure: 'ヘッダー（ナビゲーション）、メインコンテンツ、フッター（システム情報）',
+                componentPlacement: 'サイドパネル（フィルター）、メイン（カレンダー/リスト表示）'
+            },
             constraints: [
                 'コストを抑えるため、可能な限りオープンソースの技術を使用する',
                 '将来の拡張性を考慮した設計にする',
@@ -37,7 +57,7 @@ const templates = [
         }
     },
 
-    // API設計テンプレート
+    // API Design Template
     {
         id: 'api-design',
         name: 'API設計',
@@ -61,6 +81,26 @@ const templates = [
                 'レート制限やキャッシュ戦略を提案する',
                 'API仕様書のサンプル（OpenAPI/Swaggerフォーマット）を作成する'
             ],
+            techSpecs: {
+                backend: 'Node.js、NestJS、TypeScript',
+                auth: 'OAuth 2.0 + JWT認証',
+                performance: 'Redis キャッシュ、CDN',
+                monitoring: 'OpenTelemetry、Prometheus'
+            },
+            uiSpecs: {
+                interaction: 'クライアントSDK、RESTful標準に準拠したリソース操作',
+                responsive: '適切なページネーション、レスポンスサイズ最適化',
+                accessibility: 'PATCHメソッド対応、一貫性のあるエラーレスポンス'
+            },
+            designSpecs: {
+                structure: 'リソース指向設計、階層的エンドポイント構造',
+                format: 'JSON/JSONAPIスキーマ、HAL+JSONハイパーメディア',
+                versioning: 'URLベースバージョニング（/v1/, /v2/）'
+            },
+            layoutSpecs: {
+                apiStructure: 'リソース→コレクション→アクション階層',
+                documentation: 'インタラクティブSwaggerUI、サンプルリクエスト付き'
+            },
             constraints: [
                 'セキュリティを最優先する（OWASP Top 10対応）',
                 'スケーラビリティを考慮した設計',
@@ -75,7 +115,7 @@ const templates = [
         }
     },
 
-    // データベース設計テンプレート
+    // Database Design Template
     {
         id: 'database-design',
         name: 'データベース設計',
@@ -101,6 +141,26 @@ const templates = [
                 'パフォーマンス最適化のためのインデックス戦略を提案する',
                 'データ整合性を保つための制約を設計する'
             ],
+            techSpecs: {
+                dbms: 'PostgreSQL 15、TimescaleDB（時系列データ）',
+                backupSystem: '増分バックアップ、ポイントインタイムリカバリ',
+                encryption: 'TDE（透過的データ暗号化）、列レベル暗号化',
+                highAvailability: 'マスター/スレーブレプリケーション、フェイルオーバー'
+            },
+            uiSpecs: {
+                dataAccess: 'ORM抽象化層、ストアドプロシージャ',
+                performance: 'クエリパフォーマンスチューニング、実行計画最適化',
+                dataIntegrity: '参照整合性制約、トリガー、CHECK制約'
+            },
+            designSpecs: {
+                normalization: '第3正規形（3NF）基本、必要に応じて非正規化',
+                dataTypes: '適切なサイズ指定（VARCHAR最適化、数値型選定）',
+                partitioning: '患者データの時系列パーティショニング'
+            },
+            layoutSpecs: {
+                schemaOrganization: 'ドメイン別スキーマ分割（患者、スタッフ、請求など）',
+                indexStrategy: 'B-tree、GiSTインデックス併用、部分インデックス'
+            },
             constraints: [
                 'HIPAA等の医療情報保護規制に準拠すること',
                 '10年以上のデータ保持を想定した設計',
@@ -115,7 +175,7 @@ const templates = [
         }
     },
 
-    // ブログ記事作成テンプレート
+    // Blog Article Template
     {
         id: 'blog-article',
         name: 'ブログ記事作成',
@@ -139,6 +199,26 @@ const templates = [
                 '読者が実際に行動できる具体的なステップを提供する',
                 '適切な内部リンクのプレースホルダーを含める'
             ],
+            techSpecs: {
+                codeExamples: 'Docker、Kubernetes、CircleCI、API Gateway',
+                architecture: 'イベント駆動型、サービスメッシュ、コンテナオーケストレーション',
+                monitoring: 'Prometheus、Grafana、分散トレーシング',
+                deployment: 'CI/CDパイプライン、Blue/Greenデプロイメント'
+            },
+            uiSpecs: {
+                readability: 'スキャナブルなレイアウト、ハイライトボックス',
+                engagement: 'コードブロック、ステップバイステップガイド付き',
+                navigation: '目次、アンカーリンク、関連記事参照'
+            },
+            designSpecs: {
+                typography: '読みやすさ重視、コードブロック用等幅フォント',
+                visual: 'アーキテクチャ図、マインドマップ、フロー図',
+                branding: 'サイトデザインに合わせたカラースキーム'
+            },
+            layoutSpecs: {
+                structure: '導入→本文（問題提起→解決策）→まとめ→参考資料',
+                contentFlow: 'ステップアップ方式の情報提供、実践セクション区分け'
+            },
             constraints: [
                 '特定のクラウドベンダーや技術に偏らない中立的な視点',
                 'マーケティング的な表現は避け、技術的に正確な内容',
@@ -152,7 +232,7 @@ const templates = [
         }
     },
 
-    // 技術ドキュメント作成テンプレート
+    // Technical Documentation Template
     {
         id: 'tech-doc',
         name: '技術ドキュメント作成',
@@ -178,6 +258,26 @@ const templates = [
                 'トラブルシューティングセクションを充実させる',
                 'チェックリスト形式の要約を含める'
             ],
+            techSpecs: {
+                stack: 'Node.js v16以上、GraphQL、Apollo Server、TypeScript',
+                database: 'PostgreSQL 13以上、TypeORM',
+                devTools: 'Docker、Docker Compose、Git、VS Code、ESLint',
+                testing: 'Jest、SuperTest、GraphQL Playground'
+            },
+            uiSpecs: {
+                documentation: 'マークダウン形式、VS Codeプレビュー互換',
+                navigation: 'アンカーリンク、目次、検索可能なインデックス',
+                examples: 'ターミナルセッションのコピペ可能なコマンド'
+            },
+            designSpecs: {
+                layout: '段階的手順、番号付きリスト、チェックリスト',
+                codeBlocks: '構文ハイライト、コピーボタン付き',
+                callouts: '注意点・重要事項の強調表示'
+            },
+            layoutSpecs: {
+                structure: '前提条件→基本セットアップ→詳細設定→検証→トラブルシューティング',
+                progression: '各セクションの依存関係と流れを明確に示す'
+            },
             constraints: [
                 '技術的に正確であること（Node.js v16以上、PostgreSQL 13以上を使用）',
                 '開発者が前提知識（Git, Node.js, SQL基礎）を持っていることを前提',
@@ -192,7 +292,7 @@ const templates = [
         }
     },
 
-    // プログラミング教育テンプレート
+    // Programming Education Template
     {
         id: 'prog-education',
         name: 'プログラミング教育',
@@ -217,6 +317,26 @@ const templates = [
                 '複数の実用的なシナリオでの応用例を示す',
                 '学習者が理解しづらい部分の補足説明を用意する'
             ],
+            techSpecs: {
+                language: 'JavaScript ES2022、Node.js 18.x',
+                concepts: 'Promise、async/await、fetch API、AbortController',
+                tools: 'ブラウザコンソール、Node.js REPL、CodeSandbox',
+                libraries: 'Axios（例示用）、node-fetch'
+            },
+            uiSpecs: {
+                interactivity: 'ライブコードエディタ、実行結果表示',
+                progression: '段階的なコンセプト導入、スモールステップ',
+                reinforcement: '練習問題、自己チェック問題、解答例'
+            },
+            designSpecs: {
+                structure: 'コードブロック強調、キーコンセプトハイライト',
+                visualization: '非同期処理フロー図、イベントループ図解',
+                comparison: 'パターン別コード比較表、ベストプラクティス'
+            },
+            layoutSpecs: {
+                lessonStructure: '概念説明→コード例→解説→練習→応用',
+                navigation: 'レッスン間の自然な流れ、前提知識リンク'
+            },
             constraints: [
                 'ECMAScript 2022以降の最新文法を使用',
                 'Node.jsとブラウザ環境の両方に適用できる例を含める',
@@ -231,7 +351,7 @@ const templates = [
         }
     },
 
-    // システム開発テンプレート
+    // System Development Template
     {
         id: 'system-dev',
         name: 'システム開発',
@@ -257,6 +377,26 @@ const templates = [
                 '非機能要件（性能、セキュリティ、可用性など）を定義する',
                 '段階的な開発・移行計画を提案する'
             ],
+            techSpecs: {
+                architecture: 'マイクロサービス、イベント駆動型、CQRS',
+                backend: 'Java/Spring Boot、.NET Core、メッセージキュー',
+                frontend: 'React、PWA対応、バーコードスキャナー連携',
+                database: 'PostgreSQL（トランザクション）、ElasticSearch（検索）'
+            },
+            uiSpecs: {
+                userExperience: '業務効率最優先、ショートカットキー多用',
+                devices: 'デスクトップ、タブレット、ハンドヘルドスキャナー',
+                accessibility: '倉庫環境での視認性、タッチ操作最適化'
+            },
+            designSpecs: {
+                dashboard: 'KPI可視化、アラート管理、ステータス表示',
+                workflow: 'プロセス指向UI、ウィザード形式入力',
+                customization: '役割ベースのUI調整、カスタムレポート'
+            },
+            layoutSpecs: {
+                navigation: 'トップナビ（メイン機能）、サイドナビ（詳細機能）',
+                mainViews: '在庫一覧、拠点別状況、発注管理、レポート'
+            },
             constraints: [
                 '既存システムからの移行を考慮した設計（データ変換、並行運用計画など）',
                 'オフライン環境でも最低限の機能が動作することを保証する',
@@ -271,7 +411,7 @@ const templates = [
         }
     },
 
-    // ウェブアプリケーション（高度版）テンプレート
+    // Advanced Web Application Template
     {
         id: 'advanced-web-app',
         name: 'ウェブアプリケーション（高度版）',
@@ -299,6 +439,26 @@ const templates = [
                 'スケーラビリティを考慮したデータベース設計を行う',
                 'CIパイプラインとデプロイ戦略を設計する'
             ],
+            techSpecs: {
+                frontend: 'React/TypeScript、TailwindCSS、React Query',
+                backend: 'Node.js、NestJS、WebSocket/Socket.IO',
+                database: 'PostgreSQL（主データ）、Redis（キャッシュ、リアルタイム）',
+                devops: 'Docker、GitHub Actions、AWS/GCP'
+            },
+            uiSpecs: {
+                interaction: 'ドラッグ&ドロップ、インライン編集、リアルタイム更新',
+                responsive: 'デスクトップ優先だがモバイル対応、PWA',
+                accessibility: 'キーボードナビゲーション、ARIA対応、高コントラスト'
+            },
+            designSpecs: {
+                theme: 'ライト/ダークモード、カスタムカラーテーマ',
+                components: 'Atomic Design原則に基づくコンポーネント構成',
+                animations: '効果的なモーショントランジション、骨格ローディング'
+            },
+            layoutSpecs: {
+                structure: 'サイドナビ、トップバー、メインコンテンツエリア',
+                organization: '階層化されたプロジェクト/ボード/タスク構造'
+            },
             constraints: [
                 'フロントエンドはReact/TypeScriptを使用すること',
                 'バックエンドはNode.js（NestJSまたはExpress）を使用すること',
@@ -315,7 +475,7 @@ const templates = [
         }
     },
 
-    // 静的Webサイトテンプレート
+    // Static Website Template
     {
         id: 'static-website',
         name: '静的Webサイト',
@@ -343,6 +503,26 @@ const templates = [
                 'お問い合わせフォームの実装（バリデーションを含む）',
                 'アニメーションの実装案を提示する'
             ],
+            techSpecs: {
+                framework: 'Next.js 14、App Router、React 18+',
+                styling: 'TailwindCSS、CSS Modules、Framer Motion',
+                build: 'webpack、静的サイト生成（SSG）優先',
+                optimizations: '画像最適化、コード分割、レイジーローディング'
+            },
+            uiSpecs: {
+                interactivity: '滑らかなスクロールエフェクト、ホバーアニメーション',
+                responsive: 'モバイルファースト、ブレイクポイント最適化',
+                forms: 'インラインバリデーション、フィードバック、アクセシブル'
+            },
+            designSpecs: {
+                typography: 'Noto Sans JP、Inter、読みやすさ重視のタイポグラフィ',
+                colors: 'ブランドカラー+モノクロ基調、高コントラスト',
+                components: 'シャドウ、角丸、微妙なグラデーション'
+            },
+            layoutSpecs: {
+                structure: 'ナビゲーション（固定）、メインセクション、フッター',
+                sections: 'フルスクリーンセクション、グリッドレイアウト'
+            },
             constraints: [
                 'HTML5、CSS3、JavaScript（ES6+）を使用すること',
                 'フレームワークはNext.jsを使用すること',
@@ -358,7 +538,8 @@ const templates = [
             allowModifications: true
         }
     },
-    // Webデザインテンプレート（続き）
+
+    // Web Design Template
     {
         id: 'web-design',
         name: 'Webデザイン',
@@ -385,6 +566,26 @@ const templates = [
                 'レスポンシブデザインのガイドラインを作成する',
                 'ユーザビリティテストのためのプロトタイプ案を提案する'
             ],
+            techSpecs: {
+                designTools: 'Figma、Principle（アニメーション）',
+                implementation: 'React Native対応デザイン、iOS/Android対応',
+                handoff: 'デザイン→開発の円滑な引き継ぎ方法、アセット生成',
+                testing: 'ユーザビリティテスト計画、プロトタイプ方法'
+            },
+            uiSpecs: {
+                interaction: 'タップ、スワイプ、ジェスチャー定義、触覚フィードバック',
+                responsive: 'iPhone/Android主要サイズ最適化、タブレット対応',
+                usability: '片手操作対応、運動中でも操作しやすいUI'
+            },
+            designSpecs: {
+                typography: 'サンセリフ主体、十分な行間、階層的な見出し構造',
+                colors: '活力を感じるアクセントカラー、十分なコントラスト比',
+                iconography: '一貫したアイコンスタイル、視認性の高いシンボル'
+            },
+            layoutSpecs: {
+                navigation: 'タブバー（主要機能）、サイドメニュー（設定等）',
+                screens: 'コンテンツ密度の最適化、運動中の視認性考慮'
+            },
             constraints: [
                 'Appleの人間インターフェイスガイドラインとMaterial Designの原則に準拠すること',
                 'アクセシビリティ（色のコントラスト、フォントサイズ、タッチターゲットサイズ）に配慮すること',
@@ -400,7 +601,7 @@ const templates = [
         }
     },
 
-    // デスクトップアプリテンプレート
+    // Desktop Application Template
     {
         id: 'desktop-app',
         name: 'デスクトップアプリ',
@@ -429,6 +630,26 @@ const templates = [
                 'データモデルとファイル形式を設計する',
                 'マルチプラットフォーム対応の実装戦略を提案する'
             ],
+            techSpecs: {
+                framework: 'Electron、React/TypeScript（UI）',
+                videoProcessing: 'FFmpeg、WebAssembly、GPU加速',
+                architecture: 'モジュラー設計、プラグインシステム',
+                storage: 'SQLite（メタデータ）、ファイルベース（メディア）'
+            },
+            uiSpecs: {
+                layout: 'マルチパネル（タイムライン、プレビュー、ライブラリ）',
+                controls: 'カスタマイズ可能なショートカット、スクラブ操作',
+                feedback: 'リアルタイムプレビュー、プログレスインジケーター'
+            },
+            designSpecs: {
+                theme: 'ダークテーマ主体、コントラスト調整可能',
+                components: 'カスタムUI要素、直感的なドラッグ&ドロップ',
+                workflow: 'コンテキスト依存メニュー、スマートツールパネル'
+            },
+            layoutSpecs: {
+                windows: 'ドッキング可能なパネル、マルチモニター対応',
+                organization: 'メディアブラウザ、エフェクトパネル、プロパティ'
+            },
             constraints: [
                 'Windows、macOS両対応のクロスプラットフォーム実装であること',
                 'GPUアクセラレーションを最大限活用すること',
@@ -445,7 +666,7 @@ const templates = [
         }
     },
 
-    // スマホアプリテンプレート
+    // Mobile Application Template
     {
         id: 'mobile-app',
         name: 'スマホアプリ',
@@ -474,6 +695,26 @@ const templates = [
                 'ソーシャル機能のデータフローを設計する',
                 'パフォーマンスとバッテリー使用効率の最適化戦略を提案する'
             ],
+            techSpecs: {
+                platform: 'React Native（クロスプラットフォーム）',
+                state: 'Redux Toolkit、React Query（データフェッチ）',
+                backend: 'Firebase（認証、DB、ストレージ、通知）',
+                native: 'カメラ、プッシュ通知、ディープリンク対応'
+            },
+            uiSpecs: {
+                navigation: 'タブベース、ネスト化されたスタックナビゲーション',
+                offline: 'オフラインファースト設計、バックグラウンド同期',
+                performance: 'リスト仮想化、画像最適化、メモ化'
+            },
+            designSpecs: {
+                visual: '高品質な料理写真、マットスタイルUI要素',
+                typography: '可読性重視、十分なコントラスト',
+                animations: '適切なトランジション、フィードバックアニメーション'
+            },
+            layoutSpecs: {
+                screens: 'グリッドレイアウト（検索）、リスト表示（詳細）',
+                components: 'カード型UI、フローティングアクションボタン'
+            },
             constraints: [
                 'iOS、Android両プラットフォームに対応すること',
                 'オフライン状態でも基本機能が使用可能であること',
@@ -490,7 +731,7 @@ const templates = [
         }
     },
 
-    // モダンなWebアプリテンプレート
+    // Modern Web Application Template
     {
         id: 'modern-web-app',
         name: 'モダンなWebアプリ',
@@ -518,6 +759,26 @@ const templates = [
                 'コンポーネントライブラリを設計する',
                 'パフォーマンス最適化戦略（React.memo, useCallback, useMemo）を適用する'
             ],
+            techSpecs: {
+                frontend: 'React 18+、TypeScript 5.x',
+                styling: 'TailwindCSS 3.x、Styled Components（必要に応じて）',
+                stateMgmt: 'React Query（データフェッチ）、Zustand/Jotai（状態管理）',
+                performance: 'コード分割、メモ化、仮想化リスト'
+            },
+            uiSpecs: {
+                components: 'アトミックデザイン、再利用可能コンポーネント',
+                responsiveness: 'モバイルファースト、フレックスボックス/グリッド',
+                animation: 'Framer Motion、CSSトランジション'
+            },
+            designSpecs: {
+                typography: 'Noto Sans JP（日本語）、Poppins（英数字）',
+                colors: 'カラートークン、セマンティックカラー、ダークモード変数',
+                spacing: 'TailwindCSSスペーシングシステム、一貫した余白'
+            },
+            layoutSpecs: {
+                structure: 'ヘッダー（固定）、サイドナビ（必要に応じて）、メインコンテンツ',
+                grid: 'フレックスボックス/CSSグリッド、レスポンシブコンテナ'
+            },
             constraints: [
                 'React 18+を使用すること',
                 'TailwindCSSを活用したスタイリングを行うこと',
@@ -533,9 +794,312 @@ const templates = [
             allowQuestions: true,
             allowModifications: true
         }
+    },
+
+    // Trading Application Template
+    {
+        id: 'trading-app',
+        name: 'トレード管理アプリ',
+        data: {
+            role: '金融アプリケーション開発者',
+            outputImage: 'トレード記録・分析用Webアプリケーションの設計と実装コード',
+            background: '個人投資家向けのトレード記録、分析、パフォーマンス評価を行うためのアプリケーションを開発したい。使いやすく、データ可視化に優れたツール。',
+            goalElements: [
+                'トレード記録機能（取引履歴の入力、編集、削除）',
+                'パフォーマンス分析（利益/損失統計、勝率、平均リターン）',
+                'ポートフォリオ可視化（資産配分、セクター分布）',
+                'チャート機能（価格チャート、パフォーマンスチャート）',
+                'トレードジャーナル（メモ、振り返り記録）',
+                'レポート生成（日次/週次/月次/年次）',
+                'リスク分析（ドローダウン、シャープレシオ）',
+                'データエクスポート/インポート機能'
+            ],
+            sharedImage: '- Trading Viewのような機能的なチャート表示\n- クリーンでプロフェッショナルなダッシュボード\n- データ重視の明確なレイアウト\n- ダークテーマをベースとした目に優しいUI\n- モバイル対応でいつでもトレード記録が可能',
+            workInstructions: [
+                'アプリケーションのアーキテクチャを設計する',
+                'データモデルとストレージ戦略を定義する',
+                'チャート実装のためのライブラリを選定し実装例を提示する',
+                'トレード入力フォームとバリデーションを設計する',
+                'パフォーマンス計算のアルゴリズムを設計する',
+                'ダッシュボードレイアウトとUIコンポーネントを設計する',
+                'データのインポート/エクスポート機能を実装する'
+            ],
+            techSpecs: {
+                frontend: 'React/TypeScript、Chart.js/Recharts',
+                storage: 'IndexedDB、ローカルストレージ、オプショナルクラウド同期',
+                dataProcessing: 'データ集計・分析ライブラリ、財務計算関数',
+                optimization: 'メモ化、仮想化リスト、チャートパフォーマンス最適化'
+            },
+            uiSpecs: {
+                dashboard: '概要統計、最近のトレード、主要KPI',
+                charts: 'ローソク足チャート、パフォーマンスライン、分布図',
+                forms: '効率的なトレード入力、テンプレート、バッチ入力'
+            },
+            designSpecs: {
+                theme: 'ダークテーマ基調、読みやすさ重視',
+                numbers: '明確な数値表示、色分けされた損益表示',
+                tables: 'ソート可能な取引履歴、フィルタリング機能'
+            },
+            layoutSpecs: {
+                structure: 'サイドナビ、メインダッシュボード、トレード詳細',
+                organization: 'タブ型インターフェース、コンテキストメニュー'
+            },
+            constraints: [
+                'オフライン対応でローカルでデータを保存できること',
+                '大量のトレードデータでもパフォーマンスが低下しないこと',
+                'プライバシーとデータセキュリティを重視すること',
+                'ブラウザ互換性を確保すること（Chrome、Firefox、Safari、Edge）',
+                'トレード戦略のルールに基づいたアラート機能を実装すること',
+                'データバックアップ機能を提供すること'
+            ],
+            outputFormat: 'Markdown形式で、以下を含める:\n- アプリケーションアーキテクチャの概要\n- データモデルと保存戦略\n- 主要画面のUIデザインとコンポーネント構成\n- チャート実装のサンプルコード\n- パフォーマンス計算のアルゴリズム詳細\n- データ管理（インポート/エクスポート/バックアップ）方法\n- レスポンシブ対応の実装詳細\n- テスト戦略と品質保証方法',
+            style: '金融データの正確性を重視しつつ、技術的実装の詳細も明確に説明する。チャートやデータ可視化に関する知見を示し、パフォーマンスとUXのバランスについての考慮点を明示する。',
+            allowQuestions: true,
+            allowModifications: true
+        }
+    },
+
+    // Educational Content Template
+    {
+        id: 'educational-content',
+        name: '教育コンテンツ',
+        data: {
+            role: 'IT教育コンテンツ開発者',
+            outputImage: 'プログラミング初心者向けのインタラクティブ学習コース',
+            background: 'IT未経験者や業務効率化を目指す一般ビジネスパーソンに向けた、実践的なプログラミング入門コースを開発したい',
+            goalElements: [
+                '基本概念の明確な説明（変数、条件分岐、ループなど）',
+                '段階的な学習パス（簡単な例から実践的な例へ）',
+                'インタラクティブな練習問題とフィードバック',
+                '実務で使える具体的なミニプロジェクト',
+                '視覚的な概念説明（図解、フローチャート）',
+                '復習と知識定着のための確認テスト',
+                'トラブルシューティングのガイダンス',
+                '継続学習のためのリソース案内'
+            ],
+            sharedImage: '- Codecademyのようなステップバイステップのアプローチ\n- freeCodeCampの実践的なプロジェクト形式\n- Duolingoのようなゲーミフィケーション要素\n- 明快で読みやすい説明と豊富な例\n- 実務に近い実践的な内容',
+            workInstructions: [
+                'カリキュラム全体の構造と学習目標を設計する',
+                '各レッスンの詳細内容と例題を作成する',
+                '理解度チェックのための演習問題を開発する',
+                '視覚的な教材（図解、チャート）を設計する',
+                '実践的なミニプロジェクトの仕様を定義する',
+                '学習者のつまずきやすいポイントの解説を作成する',
+                '継続学習のためのリソースリストを編集する'
+            ],
+            techSpecs: {
+                languages: 'JavaScript/Python（初心者向け）',
+                platform: 'Web対応学習プラットフォーム、モバイル対応',
+                interactive: 'インラインコードエディタ、即時フィードバック',
+                assessment: '自動採点システム、進捗トラッキング'
+            },
+            uiSpecs: {
+                navigation: '明確な学習パス、進捗表示',
+                interaction: 'コード入力、実行結果表示、ヒント機能',
+                feedback: '即時評価、エラー説明、成功メッセージ'
+            },
+            designSpecs: {
+                layout: 'クリーンで集中しやすいレイアウト',
+                visuals: '概念を明確にする図解、フローチャート',
+                typography: '読みやすさを重視したフォント選定'
+            },
+            layoutSpecs: {
+                lessonStructure: '概念説明→例示→演習→プロジェクト適用',
+                progression: '知識の積み上げ式構造、適切な難易度カーブ'
+            },
+            constraints: [
+                'プログラミング未経験者でも理解できる平易な説明を心がけること',
+                '業務効率化に直結する実例を多く含めること',
+                '1セッション15-30分で完了できる長さに各レッスンを設計すること',
+                'モバイル端末でも学習可能な形式にすること',
+                '専門用語は必ず平易な言葉で補足説明すること',
+                '挫折しないよう適切な難易度設計を行うこと'
+            ],
+            outputFormat: 'Markdown形式で、以下を含める:\n- コース全体の構造と学習目標\n- 各レッスンの詳細概要\n- サンプルレッスンの完全な内容（説明、例、演習問題）\n- 視覚的教材のサンプル（図解の説明）\n- ミニプロジェクトの詳細仕様\n- 学習者の典型的なつまずきポイントと解決法\n- 継続学習のためのリソースリスト',
+            style: '親しみやすく励みになる口調を使いつつ、概念説明は正確かつ明快に。専門用語を使う場合は必ず平易な言葉での言い換えも提示。「なぜそうするのか」の背景説明を重視。',
+            allowQuestions: true,
+            allowModifications: true
+        }
+    },
+
+    // Documentation Generator Template
+    {
+        id: 'documentation',
+        name: 'ドキュメント生成',
+        data: {
+            role: '技術ドキュメント作成者',
+            outputImage: 'オープンソースプロジェクトの包括的な技術ドキュメント',
+            background: '開発したライブラリやAPIの利用促進と適切な活用を目的とした、開発者向けの技術ドキュメントを作成したい',
+            goalElements: [
+                '明確な概要と使用目的の説明',
+                'インストール・セットアップ手順',
+                'API仕様の詳細（メソッド、パラメータ、戻り値）',
+                '基本的な使用例とベストプラクティス',
+                '高度な利用シナリオとサンプルコード',
+                'トラブルシューティングガイド',
+                'パフォーマンス最適化のヒント',
+                '貢献ガイドラインと開発環境のセットアップ'
+            ],
+            sharedImage: '- MDNのような明確で構造化された説明\n- React公式ドキュメントのような実用例と理論のバランス\n- GitHubのドキュメントのようなクリアな手順\n- Stripeドキュメントのようなインタラクティブな例示\n- Tailwind CSSのような視覚的に優れた表現',
+            workInstructions: [
+                'ドキュメントの全体構造とナビゲーションを設計する',
+                'インストールとセットアップのステップバイステップガイドを作成する',
+                'API仕様を詳細かつ明確に記述する',
+                '基本から応用までの使用例を実装する',
+                'よくある質問とトラブルシューティングセクションを作成する',
+                'コミュニティ貢献のためのガイドラインを定義する',
+                'サンプルコードとスニペットのテスト済みの例を提供する'
+            ],
+            techSpecs: {
+                format: 'Markdown/MDX形式、静的サイトジェネレーター対応',
+                codeExamples: '構文ハイライト、実行可能なサンプル',
+                versioning: 'ドキュメントバージョン管理、変更履歴',
+                search: '全文検索機能、インデックス最適化'
+            },
+            uiSpecs: {
+                navigation: '階層的なサイドバーナビ、ブレッドクラム',
+                interaction: 'コードコピーボタン、編集提案リンク',
+                responsive: 'モバイル対応レイアウト、閲覧性最適化'
+            },
+            designSpecs: {
+                layout: 'クリーンな2カラムレイアウト（ナビ+コンテンツ）',
+                typography: '読みやすいフォント、適切な行間、見出し階層',
+                codeBlocks: '構文ハイライト、ダーク/ライトテーマ対応'
+            },
+            layoutSpecs: {
+                structure: '階層的なセクション構造、論理的な情報配置',
+                progression: '基本から応用へと進むフロー、独立参照可能な形式'
+            },
+            constraints: [
+                '初心者から上級者まで幅広いスキルレベルに対応すること',
+                'コードスニペットは実際に動作確認済みであること',
+                'SEO対策として適切な見出し構造とメタデータを含めること',
+                '国際的な開発者に配慮し、シンプルな英語で記述すること（または多言語対応）',
+                'アクセシビリティガイドラインに準拠すること',
+                '定期的な更新を前提とした保守性の高い構造にすること'
+            ],
+            outputFormat: 'Markdown形式で、以下を含める:\n- ドキュメント全体の構造と目次\n- 「はじめに」セクションのサンプル\n- インストール・セットアップガイドのサンプル\n- API仕様のサンプル（主要メソッド/機能の詳細）\n- 基本的な使用例のサンプルコード\n- 高度な使用例のサンプルコード\n- トラブルシューティングセクションのサンプル\n- 貢献ガイドラインのサンプル',
+            style: '明確で直接的、かつ友好的な口調。説明は簡潔でありながら十分な詳細を含み、コード例には常に目的と機能の説明を付ける。概念的な説明と実践的な例のバランスを重視。',
+            allowQuestions: true,
+            allowModifications: true
+        }
+    },
+
+    // Data Analysis Template
+    {
+        id: 'data-analysis',
+        name: 'データ分析',
+        data: {
+            role: 'データアナリスト/データサイエンティスト',
+            outputImage: 'ビジネスデータの包括的分析レポートと可視化',
+            background: '企業の売上、顧客行動、マーケティング効果などのデータを分析し、ビジネス意思決定に役立つインサイトを抽出したい',
+            goalElements: [
+                'データ概要と品質評価',
+                '探索的データ分析（EDA）と基本統計',
+                'トレンド分析と時系列パターン',
+                'セグメント分析と顧客分類',
+                '相関分析と因果関係の考察',
+                '予測モデルと将来予測',
+                'アクショナブルなビジネスインサイト',
+                '効果的なデータ可視化'
+            ],
+            sharedImage: '- Harvard Business Reviewの分析レポートのような論理的構造\n- Kaggleの上位ノートブックのような明確なコードと解説\n- Tableauダッシュボードのような効果的な可視化\n- McKinseyレポートのような実用的なビジネスインサイト\n- 経営層にも理解しやすい表現と専門家も納得する分析深度のバランス',
+            workInstructions: [
+                'データの前処理と品質評価のプロセスを設計する',
+                '探索的データ分析（EDA）の手法と実装を提案する',
+                '主要な統計的分析手法とコードを提供する',
+                '機械学習モデル（必要に応じて）の選定と実装を行う',
+                'ビジネスインサイトを抽出し明確に説明する',
+                '効果的なデータ可視化を設計する',
+                '分析結果に基づく具体的な推奨事項をまとめる'
+            ],
+            techSpecs: {
+                languages: 'Python（Pandas, NumPy, Scikit-learn）',
+                visualization: 'Matplotlib, Seaborn, Plotly',
+                analysis: '統計的検定、回帰分析、クラスタリング',
+                optional: '機械学習モデル、時系列分析、NLP'
+            },
+            uiSpecs: {
+                notebooks: 'Jupyter Notebookベースの分析フロー',
+                visualization: 'インタラクティブグラフ、ダッシュボード要素',
+                reporting: 'エグゼクティブサマリー、詳細分析セクション'
+            },
+            designSpecs: {
+                charts: 'カラーパレット統一、適切なチャートタイプ選定',
+                layout: '論理的なレポート構造、重要ポイントの強調',
+                presentation: 'ストーリーテリングアプローチ、主要な発見の視覚化'
+            },
+            layoutSpecs: {
+                structure: '問題定義→データ概要→分析→結果→推奨事項',
+                flow: '論理的な分析ステップの流れ、再現可能な構造'
+            },
+            constraints: [
+                'コードの再現性と可読性を確保すること',
+                '統計的に正確な手法と適切な解釈を行うこと',
+                'ビジネス用語と技術的説明のバランスを取ること',
+                'データプライバシーとセキュリティを考慮すること',
+                '分析の限界と制約を明示すること',
+                '経営層の意思決定に役立つアクショナブルな洞察を提供すること'
+            ],
+            outputFormat: 'Markdown形式で、以下を含める:\n- エグゼクティブサマリー\n- 分析目的と背景\n- データ概要と前処理手順\n- 探索的データ分析の結果と主要な発見\n- 詳細分析のプロセスとコード\n- 重要なビジネスインサイト\n- データ可視化（グラフ、チャートの説明）\n- 推奨事項と次のステップ\n- 付録：使用した技術的手法の詳細',
+            style: '論理的で根拠に基づいた説明を行いつつ、非技術者にも理解可能な表現を心がける。技術的詳細は必要に応じて提供しながら、ビジネス価値と実用的なインサイトを強調する。',
+            allowQuestions: true,
+            allowModifications: true
+        }
+    },
+
+    // Minimal Template
+    {
+        id: 'minimal',
+        name: '最小構成テンプレート',
+        data: {
+            role: 'システム開発者',
+            outputImage: 'シンプルかつ効率的なWebアプリケーション',
+            background: '最小限の構成で機能的なシステムを素早く開発したい',
+            goalElements: [
+                '基本機能の実装',
+                '直感的なUI',
+                'パフォーマンスの最適化',
+                'セキュリティ対策'
+            ],
+            sharedImage: '- モダンでクリーンなデザイン\n- 必要最低限の機能に絞ったインターフェース',
+            workInstructions: [
+                'システム要件を整理する',
+                '基本設計を行う',
+                '実装コードを提供する',
+                'テスト方法を提案する'
+            ],
+            techSpecs: {
+                frontend: 'React、TailwindCSS',
+                backend: 'Node.js、Express',
+                database: 'SQLite/PostgreSQL',
+                deployment: 'Vercel/Netlify'
+            },
+            uiSpecs: {
+                design: 'シンプルで直感的なUI',
+                responsive: 'モバイルファースト設計'
+            },
+            designSpecs: {
+                colors: 'モノクロ基調、アクセントカラーを最小限に',
+                layout: 'シンプルな構造、余白を活用'
+            },
+            layoutSpecs: {
+                structure: 'ヘッダー、メインコンテンツ、フッターの基本構造',
+                navigation: '直感的なナビゲーション'
+            },
+            constraints: [
+                'シンプルで理解しやすいコードにすること',
+                '必要最低限の機能に絞ること',
+                'パフォーマンスを優先すること',
+                '将来の拡張性を考慮すること'
+            ],
+            outputFormat: 'Markdown形式で、以下を含める:\n- 要件の整理\n- 基本設計の概要\n- 実装コード\n- テスト方法\n- デプロイ手順',
+            style: '簡潔で明瞭な技術的説明。冗長な表現を避け、必要な情報を直接的に提供する。',
+            allowQuestions: true,
+            allowModifications: true
+        }
     }
 ];
-
 
 const PMFApp = () => {
     // State management remains unchanged
@@ -546,6 +1110,26 @@ const PMFApp = () => {
         goalElements: [''],
         sharedImage: '',
         workInstructions: [''],
+        techSpecs: {
+            frontend: '',
+            backend: '',
+            database: '',
+            infrastructure: ''
+        },
+        uiSpecs: {
+            interaction: '',
+            responsive: '',
+            accessibility: ''
+        },
+        designSpecs: {
+            font: '',
+            colors: '',
+            style: ''
+        },
+        layoutSpecs: {
+            pageStructure: '',
+            componentPlacement: ''
+        },
         constraints: [''],
         outputFormat: '',
         style: '',
@@ -568,6 +1152,26 @@ const PMFApp = () => {
             goalElements: [''],
             sharedImage: '',
             workInstructions: [''],
+            techSpecs: {
+                frontend: '',
+                backend: '',
+                database: '',
+                infrastructure: ''
+            },
+            uiSpecs: {
+                interaction: '',
+                responsive: '',
+                accessibility: ''
+            },
+            designSpecs: {
+                font: '',
+                colors: '',
+                style: ''
+            },
+            layoutSpecs: {
+                pageStructure: '',
+                componentPlacement: ''
+            },
             constraints: [''],
             outputFormat: '',
             style: '',
@@ -603,8 +1207,19 @@ const PMFApp = () => {
             [field]: value
         });
     };
+
+    // Handle nested object changes
+    const handleNestedChange = (parentField, field, value) => {
+        setPmfData({
+            ...pmfData,
+            [parentField]: {
+                ...pmfData[parentField],
+                [field]: value
+            }
+        });
+    };
+
     const generatePrompt = () => {
-        // Original prompt generation logic remains unchanged
         const prompt = `あなたは${pmfData.role}のプロフェッショナルです。
 以下の依頼に正確かつ丁寧に応えてください。
 
@@ -623,18 +1238,38 @@ const PMFApp = () => {
 【5.作業指示】
 →${pmfData.workInstructions.filter(item => item).map((item, index) => `${index + 1}. ${item}`).join('\n')}
 
-【6.条件・制約】
+【6.技術仕様】
+→フロントエンド: ${pmfData.techSpecs.frontend}
+→バックエンド: ${pmfData.techSpecs.backend}
+→データベース: ${pmfData.techSpecs.database}
+→インフラ: ${pmfData.techSpecs.infrastructure}
+
+【7.UI/UX仕様】
+→インタラクション: ${pmfData.uiSpecs.interaction}
+→レスポンシブ: ${pmfData.uiSpecs.responsive}
+→アクセシビリティ: ${pmfData.uiSpecs.accessibility}
+
+【8.デザイン仕様】
+→フォント: ${pmfData.designSpecs.font}
+→カラー: ${pmfData.designSpecs.colors}
+→スタイル: ${pmfData.designSpecs.style}
+
+【9.レイアウト構成】
+→ページ構造: ${pmfData.layoutSpecs.pageStructure}
+→コンポーネント配置: ${pmfData.layoutSpecs.componentPlacement}
+
+【10.条件・制約】
 →${pmfData.constraints.filter(item => item).map(item => `- ${item}`).join('\n')}
 
-【7.出力形式指定】
+【11.出力形式指定】
 →${pmfData.outputFormat}
 
-【8.スタイル・トーン】
+【12.スタイル・トーン】
 →${pmfData.style}
 
-${pmfData.allowQuestions ? '【9.予備質問許可】\n→不明点あれば質問してください。' : ''}
+${pmfData.allowQuestions ? '【13.予備質問許可】\n→不明点あれば質問してください。' : ''}
 
-${pmfData.allowModifications ? '【10.テスト＆微修正】\n→初回の提案を確認後、必要に応じて調整を依頼します。' : ''}`;
+${pmfData.allowModifications ? '【14.テスト＆微修正】\n→初回の提案を確認後、必要に応じて調整を依頼します。' : ''}`;
 
         setGeneratedPrompt(prompt);
         setIsPromptGenerated(true);
@@ -664,17 +1299,20 @@ ${pmfData.allowModifications ? '【10.テスト＆微修正】\n→初回の提�
                     <p className="mb-4 text-gray-700">AIとのコミュニケーションを最適化し、意図した成果を最大限に引き出すための次世代プロンプト設計メソッドです。</p>
 
                     <div className="mb-6">
-                        <h3 className="font-bold mb-3 text-gray-800">PMF法の10の構成要素:</h3>
+                        <h3 className="font-bold mb-3 text-gray-800">PMF法の13の構成要素:</h3>
                         <ol className="list-decimal space-y-2 pl-5">
                             <li className="text-gray-700"><span className="font-medium text-gray-900">成果物イメージ</span>: 最終的に欲しい成果物の具体的描写</li>
                             <li className="text-gray-700"><span className="font-medium text-gray-900">背景と目的</span>: 依頼理由・目的</li>
                             <li className="text-gray-700"><span className="font-medium text-gray-900">ゴール逆算</span>: 成果物から逆算した必要要素</li>
                             <li className="text-gray-700"><span className="font-medium text-gray-900">イメージ共有</span>: デザイン、雰囲気、対象ユーザー像などの共有</li>
                             <li className="text-gray-700"><span className="font-medium text-gray-900">作業指示</span>: 明確な具体的指示</li>
+                            <li className="text-gray-700"><span className="font-medium text-gray-900">技術仕様</span>: 使用技術、フレームワーク、ライブラリ等</li>
+                            <li className="text-gray-700"><span className="font-medium text-gray-900">UI/UX仕様</span>: インタラクション、レスポンシブ対応、アクセシビリティ</li>
+                            <li className="text-gray-700"><span className="font-medium text-gray-900">デザイン仕様</span>: フォント、カラー、スタイル</li>
+                            <li className="text-gray-700"><span className="font-medium text-gray-900">レイアウト構成</span>: ページ構造、コンポーネント配置</li>
                             <li className="text-gray-700"><span className="font-medium text-gray-900">条件・制約</span>: 守るべき条件</li>
                             <li className="text-gray-700"><span className="font-medium text-gray-900">出力形式指定</span>: 成果物の形式</li>
                             <li className="text-gray-700"><span className="font-medium text-gray-900">スタイル・トーン</span>: 使用言語のトーン</li>
-                            <li className="text-gray-700"><span className="font-medium text-gray-900">予備質問許可</span>: 不明点の質問許可</li>
                             <li className="text-gray-700"><span className="font-medium text-gray-900">テスト＆微修正</span>: アウトプット後の修正依頼</li>
                         </ol>
                     </div>
@@ -688,6 +1326,7 @@ ${pmfData.allowModifications ? '【10.テスト＆微修正】\n→初回の提�
                             <li className="text-gray-700">明確な指示を与える</li>
                             <li className="text-gray-700">必要な条件や制約を明記する</li>
                             <li className="text-gray-700">成果物のイメージを具体的に伝える</li>
+                            <li className="text-gray-700">技術仕様とデザイン要件を詳細に記述する</li>
                         </ul>
                     </div>
                 </div>
@@ -1065,9 +1704,263 @@ ${pmfData.allowModifications ? '【10.テスト＆微修正】\n→初回の提�
             )
         },
 
-        // Step 9: Constraints - improved list inputs
+        // 技術仕様ステップ
         {
-            title: "6. 条件・制約",
+            title: "6. 技術仕様",
+            content: (
+                <div>
+                    <div className="mb-6">
+                        <h3 className="font-bold text-gray-800 mb-2">技術仕様:</h3>
+                        <p className="text-sm text-gray-600 mb-3">使用する技術スタックや実装に関する詳細を指定してください。</p>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">フロントエンド:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.techSpecs.frontend}
+                                    onChange={(e) => handleNestedChange('techSpecs', 'frontend', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: React 18, TailwindCSS, TypeScript"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">バックエンド:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.techSpecs.backend}
+                                    onChange={(e) => handleNestedChange('techSpecs', 'backend', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: Node.js, Express, GraphQL"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">データベース:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.techSpecs.database}
+                                    onChange={(e) => handleNestedChange('techSpecs', 'database', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: PostgreSQL, Redis, MongoDB"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">インフラ:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.techSpecs.infrastructure}
+                                    onChange={(e) => handleNestedChange('techSpecs', 'infrastructure', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: AWS, Docker, CI/CD"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            actions: (
+                <>
+                    <button
+                        onClick={prevStep}
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors focus:ring-2 focus:ring-gray-300 shadow-sm"
+                    >
+                        戻る
+                    </button>
+                    <button
+                        onClick={nextStep}
+                        className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-sm"
+                    >
+                        次へ
+                    </button>
+                </>
+            )
+        },
+
+        // UI/UX仕様ステップ
+        {
+            title: "7. UI/UX仕様",
+            content: (
+                <div>
+                    <div className="mb-6">
+                        <h3 className="font-bold text-gray-800 mb-2">UI/UX仕様:</h3>
+                        <p className="text-sm text-gray-600 mb-3">ユーザーインターフェースやユーザー体験に関する詳細を指定してください。</p>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">インタラクション:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.uiSpecs.interaction}
+                                    onChange={(e) => handleNestedChange('uiSpecs', 'interaction', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: ドラッグ&ドロップ操作、アニメーション、リアルタイム更新"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">レスポンシブ:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.uiSpecs.responsive}
+                                    onChange={(e) => handleNestedChange('uiSpecs', 'responsive', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: モバイルファースト、タブレット対応、ブレイクポイント"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">アクセシビリティ:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.uiSpecs.accessibility}
+                                    onChange={(e) => handleNestedChange('uiSpecs', 'accessibility', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: スクリーンリーダー対応、キーボード操作、色覚対応"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            actions: (
+                <>
+                    <button
+                        onClick={prevStep}
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors focus:ring-2 focus:ring-gray-300 shadow-sm"
+                    >
+                        戻る
+                    </button>
+                    <button
+                        onClick={nextStep}
+                        className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-sm"
+                    >
+                        次へ
+                    </button>
+                </>
+            )
+        },
+
+        // デザイン仕様ステップ
+        {
+            title: "8. デザイン仕様",
+            content: (
+                <div>
+                    <div className="mb-6">
+                        <h3 className="font-bold text-gray-800 mb-2">デザイン仕様:</h3>
+                        <p className="text-sm text-gray-600 mb-3">視覚的なデザイン要素に関する詳細を指定してください。</p>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">フォント:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.designSpecs.font}
+                                    onChange={(e) => handleNestedChange('designSpecs', 'font', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: Noto Sans JP, Roboto, システムフォント"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">カラー:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.designSpecs.colors}
+                                    onChange={(e) => handleNestedChange('designSpecs', 'colors', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: ブルー基調、ダークモード対応、アクセントカラー"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">スタイル:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.designSpecs.style}
+                                    onChange={(e) => handleNestedChange('designSpecs', 'style', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: ミニマリスト、フラットデザイン、マテリアルデザイン"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            actions: (
+                <>
+                    <button
+                        onClick={prevStep}
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors focus:ring-2 focus:ring-gray-300 shadow-sm"
+                    >
+                        戻る
+                    </button>
+                    <button
+                        onClick={nextStep}
+                        className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-sm"
+                    >
+                        次へ
+                    </button>
+                </>
+            )
+        },
+
+        // レイアウト構成ステップ
+        {
+            title: "9. レイアウト構成",
+            content: (
+                <div>
+                    <div className="mb-6">
+                        <h3 className="font-bold text-gray-800 mb-2">レイアウト構成:</h3>
+                        <p className="text-sm text-gray-600 mb-3">画面やページの構造に関する詳細を指定してください。</p>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">ページ構造:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.layoutSpecs.pageStructure}
+                                    onChange={(e) => handleNestedChange('layoutSpecs', 'pageStructure', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: ヘッダー、サイドバー、メインコンテンツ、フッター"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">コンポーネント配置:</label>
+                                <input
+                                    type="text"
+                                    value={pmfData.layoutSpecs.componentPlacement}
+                                    onChange={(e) => handleNestedChange('layoutSpecs', 'componentPlacement', e.target.value)}
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="例: グリッドレイアウト、カード配置、セクション分け"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            actions: (
+                <>
+                    <button
+                        onClick={prevStep}
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors focus:ring-2 focus:ring-gray-300 shadow-sm"
+                    >
+                        戻る
+                    </button>
+                    <button
+                        onClick={nextStep}
+                        className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-sm"
+                    >
+                        次へ
+                    </button>
+                </>
+            )
+        },
+        {
+            title: "10. 条件・制約",
             content: (
                 <div>
                     <div className="mb-6">
@@ -1134,7 +2027,7 @@ ${pmfData.allowModifications ? '【10.テスト＆微修正】\n→初回の提�
 
         // Step 10: Output Format - improved textarea
         {
-            title: "7. 出力形式指定",
+            title: "11. 出力形式指定",
             content: (
                 <div>
                     <div className="mb-6">
@@ -1198,7 +2091,7 @@ ${pmfData.allowModifications ? '【10.テスト＆微修正】\n→初回の提�
 
         // Step 11: Style and Tone - improved textarea with suggestions
         {
-            title: "8. スタイル・トーン",
+            title: "12. スタイル・トーン",
             content: (
                 <div>
                     <div className="mb-6">
@@ -1264,7 +2157,7 @@ ${pmfData.allowModifications ? '【10.テスト＆微修正】\n→初回の提�
 
         // Step 12: Optional Flags - improved checkboxes
         {
-            title: "9. オプション設定",
+            title: "13. オプション設定",
             content: (
                 <div className="mb-6 space-y-6">
                     <div className="bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-200 transition-colors shadow-sm">
